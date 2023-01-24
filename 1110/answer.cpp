@@ -3,21 +3,21 @@ using namespace std;
 
 int main(void)
 {
-	int n, temp, num = 0;
-	cin >> n;
-	temp = n;
+	int N, n, temp, num = 0;
+	cin >> N;
+	n = N;
 
-	if (n < 10)
+	while (1)
 	{
-		n *= 10;
-	}
-	
-	do
-	{
-		n = ((n/10 * 10) - n) *10 + (n / 10 + n % 10);
+		temp = n / 10 + n % 10;
+		n = (n % 10)*10 + temp % 10;
 		num++;
-	} while (temp != n);
+		if (N == n)
+		{
+			cout << num;
+			break;
+		}
+	}
 
-	cout << num;
 	return 0;
 }
