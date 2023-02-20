@@ -1,32 +1,40 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 using namespace std;
 
 int main(void)
 {
-	string s;
-	cin >> s;
-	char temp;
-	for (int i = 0; i < s.length(); ++i)
+	int num[58] = { 0 };
+	char s;
+	do
 	{
-		for (int j = 1; j < s.length() - i; ++j)
-		{
-			if (s[j - 1] < s[j])
-			{
-				temp = s[j - 1];
-				s[j - 1] = s[j];
-				s[j] = temp;
-			}
-		}
-	}
-	
-	int num = 0;
+		scanf("%c", &s);
+		++num[s - 65];
+	} while (s != '\n');
+
+	char ans = 65;
+	int temp = num[0];
 	int same = 0;
-	for (int i = 0; i < s.length() - 1; ++i)
+	for (int i = 1; i < 58; ++i)
 	{
-		if (s[i] != s[i + 1])
+		if (temp < num[i])
 		{
-			
+			ans = i + 65;
+			same = 0;
 		}
-		++num;
+		else if (temp == num[i] && temp != 0)
+		{
+			++same;
+		}
 	}
+
+	if (same > 0)
+	{
+		cout << '?';
+	}
+	else
+	{
+		cout << ans;
+	}
+
 }
