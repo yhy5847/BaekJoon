@@ -4,25 +4,33 @@ using namespace std;
 
 int main(void)
 {
-	int num[58] = { 0 };
+	int num[26] = { 0 };
 	char s;
-	do
-	{
-		scanf("%c", &s);
-		++num[s - 65];
-	} while (s != '\n');
 
-	char ans = 65;
-	int temp = num[0];
+	while (scanf("%c", &s) != EOF)
+	{
+		if (97 <= s && s <= 122)
+		{
+			++num[s - 97];
+		}
+		else
+		{
+			++num[s - 65];
+		}
+	}
+
+	char ans = 0;
 	int same = 0;
-	for (int i = 1; i < 58; ++i)
+	int temp = num[0];
+	for (int i = 1; i < 26; ++i)
 	{
 		if (temp < num[i])
 		{
+			temp = num[i];
 			ans = i + 65;
 			same = 0;
 		}
-		else if (temp == num[i] && temp != 0)
+		else if (temp == num[i] && num[i] != 0)
 		{
 			++same;
 		}
@@ -30,11 +38,9 @@ int main(void)
 
 	if (same > 0)
 	{
-		cout << '?';
+		ans = '?';
 	}
-	else
-	{
-		cout << ans;
-	}
-
+	
+	
+	cout << ans;
 }
