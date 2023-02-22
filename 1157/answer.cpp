@@ -1,46 +1,33 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include <iostream>
-using namespace std;
+#include <stdio.h>
+#include <string.h>
 
-int main(void)
-{
-	int num[26] = { 0 };
-	char s;
+char a[1000001];
+int arr[26];
 
-	while (scanf("%c", &s) != EOF)
-	{
-		if (97 <= s && s <= 122)
-		{
-			++num[s - 97];
-		}
-		else
-		{
-			++num[s - 65];
-		}
-	}
+int main() {
 
-	char ans = 0;
-	int same = 0;
-	int temp = num[0];
-	for (int i = 1; i < 26; ++i)
-	{
-		if (temp < num[i])
-		{
-			temp = num[i];
-			ans = i + 65;
-			same = 0;
-		}
-		else if (temp == num[i] && num[i] != 0)
-		{
-			++same;
-		}
-	}
+    int max = 0;
+    int size;
+    char ans;
 
-	if (same > 0)
-	{
-		ans = '?';
-	}
-	
-	
-	cout << ans;
+    scanf("%s", a);
+    size = strlen(a);
+
+    for (int i = 0; i < size; i++)
+        if (a[i] >= 'a') arr[a[i] - 'a']++;
+        else arr[a[i] - 'A']++;
+
+    for (int i = 0; i < 26; i++)
+        if (arr[i] == max) {
+            ans = '?';
+        }
+        else if (arr[i] > max) {
+            max = arr[i];
+            ans = 'A' + i;
+        }
+
+    printf("%c", ans);
+
+    return 0;
 }
